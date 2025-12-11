@@ -31,7 +31,7 @@ public class EchiquierView extends StackPane {
         }
 
         // Ajouter la balle
-        Balle b = new Balle(400, 240.0, 20.0, 0.5, 0.5, 0.0);
+        Balle b = new Balle(400.0, 240.0, 20.0, 1, 1, 0.0);
         BalleView bv = new BalleView(b);
         AnimationBalle animationBalle =  new AnimationBalle(bv);
         animationBalle.startTimer();

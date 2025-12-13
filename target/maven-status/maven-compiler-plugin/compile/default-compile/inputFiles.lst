@@ -7,7 +7,6 @@
 /home/itu/Documents/S5/MR_TAHINA/Echec-Pong/echec-Pong/src/main/java/projetEchecPong/models/Cavalier.java
 /home/itu/Documents/S5/MR_TAHINA/Echec-Pong/echec-Pong/src/main/java/projetEchecPong/models/Echiquier.java
 /home/itu/Documents/S5/MR_TAHINA/Echec-Pong/echec-Pong/src/main/java/projetEchecPong/models/Fou.java
-/home/itu/Documents/S5/MR_TAHINA/Echec-Pong/echec-Pong/src/main/java/projetEchecPong/models/Joueurs/Droite.java
 /home/itu/Documents/S5/MR_TAHINA/Echec-Pong/echec-Pong/src/main/java/projetEchecPong/models/Joueurs/Joueur.java
 /home/itu/Documents/S5/MR_TAHINA/Echec-Pong/echec-Pong/src/main/java/projetEchecPong/models/Piece.java
 /home/itu/Documents/S5/MR_TAHINA/Echec-Pong/echec-Pong/src/main/java/projetEchecPong/models/Pion.java
@@ -15,6 +14,9 @@
 /home/itu/Documents/S5/MR_TAHINA/Echec-Pong/echec-Pong/src/main/java/projetEchecPong/models/Reine.java
 /home/itu/Documents/S5/MR_TAHINA/Echec-Pong/echec-Pong/src/main/java/projetEchecPong/models/Roi.java
 /home/itu/Documents/S5/MR_TAHINA/Echec-Pong/echec-Pong/src/main/java/projetEchecPong/models/Tour.java
+/home/itu/Documents/S5/MR_TAHINA/Echec-Pong/echec-Pong/src/main/java/projetEchecPong/models/forme_geometrique/Cercle.java
+/home/itu/Documents/S5/MR_TAHINA/Echec-Pong/echec-Pong/src/main/java/projetEchecPong/models/forme_geometrique/FormeRectangulaire.java
+/home/itu/Documents/S5/MR_TAHINA/Echec-Pong/echec-Pong/src/main/java/projetEchecPong/models/forme_geometrique/Segment.java
 /home/itu/Documents/S5/MR_TAHINA/Echec-Pong/echec-Pong/src/main/java/projetEchecPong/views/BalleView.java
 /home/itu/Documents/S5/MR_TAHINA/Echec-Pong/echec-Pong/src/main/java/projetEchecPong/views/CaseView.java
 /home/itu/Documents/S5/MR_TAHINA/Echec-Pong/echec-Pong/src/main/java/projetEchecPong/views/EchiquierView.java

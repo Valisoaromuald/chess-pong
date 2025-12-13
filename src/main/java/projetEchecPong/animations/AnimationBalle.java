@@ -1,27 +1,33 @@
 package projetEchecPong.animations;
 
-import javafx.animation.AnimationTimer;
-import projetEchecPong.models.Balle;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.util.Duration;
 import projetEchecPong.views.BalleView;
 
+public class AnimationBalle {
 
-public class AnimationBalle extends AnimationTimer {
-    BalleView bv;
+    private final Timeline timeline;
+    private final BalleView bv;
+
     public AnimationBalle(BalleView bv) {
         this.bv = bv;
+
+        this.timeline = new Timeline(
+            new KeyFrame(Duration.millis(16), e -> {
+                bv.getBalle().deplacer();
+                bv.update();
+            })
+        );
+
+        timeline.setCycleCount(Timeline.INDEFINITE);
     }
 
-    public void handle(long now){
-        if(bv != null){
-            bv.getBalle().deplacer();
-            bv.getNode().setLayoutX(bv.getBalle().getPosX());
-            bv.getNode().setLayoutY(bv.getBalle().getPosY());
-        }
+    public void start() {
+        timeline.play();
     }
-    public void startTimer(){
-        this.start();
-    }
-    public void stopTimer(){
-        this.stop();
+
+    public void stop() {
+        timeline.stop();
     }
 }

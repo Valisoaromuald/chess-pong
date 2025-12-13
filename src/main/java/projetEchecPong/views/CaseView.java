@@ -17,16 +17,15 @@ public class CaseView {
     public void setCarreau(Case carreau) {
         this.carreau = carreau;
     }
-    public Rectangle  drawCase() throws Exception{
-        Rectangle carreau = null;
-        if(this.carreau != null){
-            carreau = new Rectangle(this.carreau.getXCoord(), this.carreau.getYCoord(), this.carreau.getWidth(), this.carreau.getHeight());
-            carreau.setLayoutX(this.carreau.getX());
-            carreau.setLayoutY(this.carreau.getY());
-            carreau.setWidth(this.carreau.getWidth());
-            carreau.setHeight(this.carreau.getHeight());
-            carreau.setFill(this.carreau.getColor());
-        } 
-        return carreau;
-    }   
+    public Rectangle drawCase() {
+    Rectangle r = new Rectangle(
+        carreau.getWidth(),
+        carreau.getHeight()
+    );  
+    r.setFill(carreau.getColor());
+    r.setLayoutX(carreau.getX());
+    r.setLayoutY(carreau.getY());
+    return r;
+}
+  
 }

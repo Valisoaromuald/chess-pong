@@ -2,6 +2,7 @@ package projetEchecPong.views;
 
 import java.util.List;
 
+import javafx.geometry.Point2D;
 import javafx.scene.Node;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -21,7 +22,7 @@ public class EchiquierView extends StackPane {
         Pane boardPane = new Pane(); // pour positionner les cases et la balle
 
         // Ajouter toutes les cases
-        for (Case carreau : echiquier.getCarreaux()) {
+        for (Case carreau : echiquier.getCases()) {
             CaseView carreauView = new CaseView();
             carreauView.setCarreau(carreau);
             Node carreauNode = carreauView.drawCase();
@@ -29,15 +30,15 @@ public class EchiquierView extends StackPane {
             carreauNode.setLayoutY(carreau.getY());
             boardPane.getChildren().add(carreauNode);
         }
-
+        Point2D centreGravite = this.echiquier.getCentreGravite();
+        System.out.println("centre de gravite: "+centreGravite);
         // Ajouter la balle
-        Balle b = new Balle(400.0, 240.0, 20.0, 1, 1, 0.0);
+        Balle b = new Balle(centreGravite.getX(), centreGravite.getY(), 20.0, 0.5, 0.5, 0.0);
         BalleView bv = new BalleView(b);
-        AnimationBalle animationBalle =  new AnimationBalle(bv);
-        animationBalle.startTimer();
-        bv.drawBalle();
-        bv.getNode().setLayoutX(b.getPosX());
-        bv.getNode().setLayoutY(b.getPosY());
+        AnimationBalle animationBalle = new AnimationBalle(bv);
+        // animationBalle.start();
+        bv.getNode().setLayoutX(b.getCenterX());
+        bv.getNode().setLayoutY(b.getCenterY());
         boardPane.getChildren().add(bv.getNode());
 
         // Ajouter le pane à ce StackPane

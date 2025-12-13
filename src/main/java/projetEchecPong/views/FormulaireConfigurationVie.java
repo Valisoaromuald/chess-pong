@@ -36,9 +36,10 @@ public class FormulaireConfigurationVie extends VBox{
                     boolean allFiled = tousLesChampsRemplis(listeTextField);
                     if(sc != null){
                         if(allFiled){
-                            Echiquier ech = new Echiquier(80.0, 80.0, 8, nombrePiece, 560.0, 560.0);
-                            sc.setRoot(new EchiquierView(ech));
                             
+                            Echiquier ech = new Echiquier(120.0, 120.0, 8, nombrePiece, 640.0, 640.0);
+                            System.out.println("eto indray hoe: "+ech.getCentreGravite());
+                            sc.setRoot(new EchiquierView(ech));
                         }
                         else{ 
                             text.setText("fenoy daholo ny point de vie");
@@ -68,7 +69,7 @@ public class FormulaireConfigurationVie extends VBox{
                 HBox hb = new HBox(spacing);
                 TextField tf1 = new TextField(pieces.get(i).toString());
                 tf1.setEditable(false);
-                TextField tf2 = new TextField();
+                TextField tf2 = new TextField("8");
                 
                 hb.getChildren().addAll(tf1,tf2);
                 this.listeTextField.add(tf2);
@@ -77,7 +78,7 @@ public class FormulaireConfigurationVie extends VBox{
             HBox hb = new HBox(spacing);
             TextField tf1 = new TextField(pieces.get(lastIndex).toString());
             tf1.setEditable(false);
-            TextField tf2 = new TextField();
+            TextField tf2 = new TextField("1");
             this.listeTextField.add(tf2);
             hb.getChildren().addAll(tf1,tf2);
             this.getChildren().add(hb);

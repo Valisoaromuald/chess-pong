@@ -11,7 +11,7 @@ public class AnimationRaquette extends AnimationTimer {
     }
     @Override
     public void handle(long now){
-        raquette.deplacer();
+        // raquette.deplacer();
     }
     public void start(){
         this.start();

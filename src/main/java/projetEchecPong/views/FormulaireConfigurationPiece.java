@@ -18,7 +18,7 @@ public class FormulaireConfigurationPiece extends VBox {
         HBox hb2 = new HBox(spacing);
 
         Label label = new Label("Entrer le nombre de piece");
-        TextField textField = new TextField();
+        TextField textField = new TextField("2");
 
         hb1.getChildren().addAll(label, textField);
 
@@ -43,7 +43,7 @@ public class FormulaireConfigurationPiece extends VBox {
                 if(ex instanceof NumberFormatException)
                 {
                     text.setText("Veuillez entrer un nombre valide");
-                }
+                }   
                 else{
                     text.setText(ex.getMessage());
                 }

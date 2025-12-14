@@ -1,6 +1,6 @@
 package projetEchecPong.animations;
 import javafx.animation.AnimationTimer;
-import projetEchecPong.models.Raquette;
+import projetEchecPong.models.jeu.Raquette;
 public class AnimationRaquette extends AnimationTimer {
     Raquette raquette;
     public Raquette getRaquette() {

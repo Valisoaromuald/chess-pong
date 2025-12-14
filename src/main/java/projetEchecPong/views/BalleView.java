@@ -1,7 +1,7 @@
 package projetEchecPong.views;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
-import projetEchecPong.models.Balle;
+import projetEchecPong.models.jeu.Balle;
 
 public class BalleView extends ViewWithNode {
 
@@ -20,21 +20,17 @@ public class BalleView extends ViewWithNode {
     public BalleView() {}
 
     private void createNode() {
-        circle = new Circle(balle.getRadius());
+        circle = new Circle(balle.getCenterX(),balle.getCenterY(),balle.getRadius());
         circle.setFill(Color.GREEN);
 
-        // Position initiale
-        circle.setLayoutX(balle.getCenterX());
-        circle.setLayoutY(balle.getCenterY());
-        circle.getLayoutX();
-
+      
         // On stocke le node dans ViewWithNode
         this.setNode(circle);
     }
 
     public void update() {
         // Mise à jour de la position du node
-        circle.setLayoutX(balle.getCenterX());
-        circle.setLayoutY(balle.getCenterY());
+        circle.setCenterX(balle.getCenterX());
+        circle.setCenterY(balle.getCenterY());
     }
 }

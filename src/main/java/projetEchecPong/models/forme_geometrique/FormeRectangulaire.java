@@ -24,12 +24,30 @@ public class FormeRectangulaire extends Rectangle {
                 new Point2D(this.getX() + this.getWidth(), this.getY() + this.getHeight()));
         Segment s4 = new Segment(new Point2D(this.getX() + this.getWidth(), this.getY()),
                 new Point2D(this.getX(), this.getY()));
-        segments.addAll(List.of(s1,s2,s3,s4));
+        segments.addAll(List.of(s1, s2, s3, s4));
         return segments;
     }
-    public Point2D getCentreGravite(){
-        double x = this.getX()+(this.getWidth()/2),
-        y = this.getY()+(this.getHeight()/2);
+
+    public Point2D getCentreGravite() {
+        double x = this.getX() + (this.getWidth() / 2),
+                y = this.getY() + (this.getHeight() / 2);
         return new Point2D(x, y);
+    }
+
+    public double getMinX() {
+        return this.getX();
+    }
+
+    public double getMaxX() {
+        return this.getX()+this.getWidth();
+    }
+
+
+    public double getMinY() {
+        return this.getY();
+    }
+
+    public double getMaxY() {
+        return this.getY()+this.getHeight();
     }
 }

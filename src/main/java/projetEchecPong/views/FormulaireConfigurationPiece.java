@@ -1,5 +1,6 @@
 package projetEchecPong.views;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -16,7 +17,7 @@ public class FormulaireConfigurationPiece extends VBox {
 
         HBox hb1 = new HBox(spacing);
         HBox hb2 = new HBox(spacing);
-
+        
         Label label = new Label("Entrer le nombre de piece");
         TextField textField = new TextField("2");
 
@@ -29,7 +30,6 @@ public class FormulaireConfigurationPiece extends VBox {
         btn.setOnAction(e -> {
             Scene scene = this.getScene();
             String textValue = textField.getText();
-
             if (textValue.trim().isEmpty()) {
                 text.setText("Vous avez oublié de mettre le nombre de pièces");
                 return;
@@ -51,7 +51,6 @@ public class FormulaireConfigurationPiece extends VBox {
         });
 
         hb2.getChildren().add(btn);
-
         this.getChildren().addAll(hb1, hb2, text);
     }
 }

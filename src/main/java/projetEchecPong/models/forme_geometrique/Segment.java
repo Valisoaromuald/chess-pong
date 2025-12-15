@@ -73,10 +73,13 @@ public class Segment {
 
     public Point2D findPointIntersection(Segment s) {
         Point2D resultat = resoudreSystemeEquation(s);
-        if(estInclus(resultat) && s.estInclus(resultat))
-            return resultat;
-        else
-            return null;
+        if(resultat != null){
+            if(estInclus(resultat) && s.estInclus(resultat))
+                return resultat;
+            else
+                return null;
+        }
+        return null;
     }
     public boolean estInclus(Point2D p){
         double xInf = this.getXMin(),

@@ -1,0 +1,193 @@
+jeu d'echecs combine avec du ping pong(en reseau)
+avec toutes les pieces 
+-principe : celui qui fait echec et mat en premier gagne
+(la balle touche le roi jusqu'a ce qu'il soit mort)
+-chaque piece a un point de vie qui n'est pas la meme pour chaque piece mais le(qui se decremente a chaque collision avec la balle)
+-piece mort sort du terrain
+-raquette pour les deux joueurs
+zone libre au milieu de l'echiquier
+ collision -> vie piece-- et la balle se rebondit
+ type collision: 
+ 		-avec piece 
+ 		-bordures echiquier
+une raquette pour chaque joueur et la balle a une position initial et un angle de deviation 360 
+
+--nombre de piece configurable( nombre paire de 2 jusqu'à 8) 2 par ligne (2 lignes) 
+	si: nombre 
+		* 2:-rois et reine avec 2 pions devant chacun
+		* 4:les pieces precedentes  suivis de 2 fous avec 2 pions devant chacun
+		* 6: les pieces precedentes suivis de 2 cavaliers avec 2 pions devant chacun
+		* 8: toutes les pieces(les pieces precedentes suivis de 2 tours avec 2 pions devant chacun)
+
+		
+Conception
+classes: 
+ *Segment:
+ 	-point p1
+ 	-point p2
+ 	-(ok) Point resoudreSystemeEquationDroite(Segment s):
+ 		double x1= this.pt1.X
+ 			x2= this.pt2.X
+ 			,y1= this.pt1.Y
+ 			,y2= this.pt2.Y
+ 			,x3= s.pt1.X
+ 			,x4= s.pt2.X
+ 			,y3= s.pt1.Y
+ 			,y4= s.pt2.Y
+ 		double a1 = y1-y2
+ 			b1= x2-x1
+ 			c1 = x1(y1-y2)+y1(x2-x1)	
+ 			a2 = y3-y4
+ 			b2 = x4-x3
+ 			c2 = x3(y3-y4)+y3(x4-x3)
+ 			delta = a1*b2-a2*b1
+ 		if(delta == 0)
+ 		retourner null
+ 		x = (c1*b2-b1*c2)/delta
+ 		y = (a1*c2-a2*c1)/delta
+	 	retourner new Point2D(x,y)
+	 -getXMin()(ok)
+	 -getXMax()(ok)
+	 -getYMin()(ok)
+	 -getYMax()(ok)
+ 	
+ 	-(ok) Point finPointIntersection(Segment s):
+ 		Point2D p = resoudreSystemeEquationDroite(s)
+ 		if estInclus(p)
+ 		return p
+ 		return null
+ 	
+ 	-(OK) boolean estInclus(Point2D p):
+ 	double xInf = this.pt1.X,yInf = this.pt1.Y, xSup = this.pt1.X,ySup = this.pt1.Y
+ 	double x = p.X , y = p.Y
+ 	return x>=Xinf et x<=xSup et y>=Xinf et y<=xSup
+ 	
+ *FormeRectangulaire  extends Rectangle:
+ 	(OK)-List<Segment>getAllSegments(): recuperer tous les segments d'un rectangle 
+ 	-(OK)getCentreDeGravite()
+ 	
+ *FormeCirculaire extends Circle:
+	(OK)-distanceCentre(Point2D point):
+		deltaX = point.X - centre.X
+		deltaY = point.Y - centre.Y
+		retourner sqrt(deltaX*deltaX+deltaY*deltaY)
+	-(OK)boolean appartientASoi(Point2D point):
+		retourner distanceCentre(point)<= this.rayon
+	
+ *Echiquier extends FormeRectangulaire:
+	 -int ligne
+	 -int colonne
+	 -list<Case>
+	 -fonctions: 
+	 	initCases()(OK)
+	 	
+
+ *Case extends FormeRectangulaire:
+ *Piece:
+  	-int pointDeVie
+  	-nom
+  	-image
+ *Roi extends Piece:
+ 
+ *Tour extends Piece:
+ 	-constructeur
+ 
+ *Cavalier extends Piece:
+ 	-constructeur
+ *Fou extends Piece	
+ 	-constructeur
+ *Pion extends Piece:
+ 	-constructeur
+  *Balle extends formeCirculaire:
+  	-double angleDeviation
+  	-double velocityX  
+  	-double velocityY
+  	-getters et setters
+  	fonction:
+  		-(ok)int getTypeDirection(): 
+  			resultat = 0
+			si velocityX > 0 :
+				velocityY  > 0:
+					resultat = 1
+				velocityY < 0:
+					type = 2
+			si velocityX < 0:
+				velocityY < 0:
+					type = 3
+				velocityY  > 0:
+					resultat = 4
+			retourner resultat
+			
+  		-(ok)Segment buildSegmentAvec(Balle b):
+  			creer un segment entre deux balle
+  			declarer segment(type Segment) avec point centre de b et de this
+  			retourner segment
+  			
+  		-findPointCollision(Balle b,objet): objet(Piece(rectangle conteneur de l'image),Raquette(rectangle),Echiquier(segment))
+  			-segmentReference = buildSegmentAvec(b)
+  			-distanceMin = 0.
+  			-point = new Point2D
+  			-distancePoint = 0.
+  			-List<Point2D> points 
+  			-verifier objet :
+  				si objet == null: Exception("point d'intersection impossible entre un segment et un objet inexistant")
+  				si objet est rectangle:
+  					-recuperer objet.getAllSegments()
+  					-boucle sur les segment:
+  						point = s.findPointIntersection(segmentreference)
+  						if(point != null) 
+  							distancePoint = distanceCentre(point)
+  							points.add(point)
+  						distanceMin = min(distancePoint,distanceMin)
+  				boucle sur points:
+  				distanceCentre dc = distanceCentre(p)
+  				if(distanceMin == dc)
+  					retourner point
+  			
+  	 	-changerDirection():
+			
+  	
+  *Raquette extends FormeRectangulaire:
+  	-double posX
+  	-double posY
+  	-double velocityX
+  	-double velocityY 
+  	fonction void devierBalle(Balle balle,angleDeviation)	
+  *Joueurs:
+  	-string nom
+  	-Raquette raquette
+  	-List<Piece> pieces
+	List<Case> zones
+  vues:
+  *FormulaireConfigurationPiece:
+	
+  *FormulaireConfigurationVie:
+  
+  *JeuView extends StackPane:
+	-echiquier
+	-Liste<Joueur> joueurs
+  	-Balle
+  *JoueurView.java
+  	Score
+  	affichage des pieces
+  *PieceView.java
+  *BalleView.java
+  
+ formulaire de saisie:
+	 -nombre de pieces  : 2 
+	 -valider (manapoitra formulaire misy champ par defaut)-> apparition de formulaire avec champ de saisie de point de vie  pour les pieces
+ 
+ formulaire configuration point de vie
+ si nombre piece 2: roi ,reine , pion
+ si nombre piece 4: roi, reine,pion,fou
+ si 6: roi, reine,pion,fou,cavalier
+ si 8 : roi, reine,pion,fou,cavalier,tour
+  
+ creer une classe de configuration de ce formulaire et un conteneur javaFx(VBox et HBox)
+
+
+ -ConfigurationPieceController implements EventHandler
+ -ConfigurationVieController implements EventHandler
+ -JeuController implements EventHandler
+ -PieceController implements EventHandler
+ 

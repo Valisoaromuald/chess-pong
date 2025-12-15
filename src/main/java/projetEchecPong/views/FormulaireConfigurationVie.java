@@ -10,14 +10,15 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
-import projetEchecPong.models.Cavalier;
-import projetEchecPong.models.Echiquier;
-import projetEchecPong.models.Fou;
-import projetEchecPong.models.Piece;
-import projetEchecPong.models.Pion;
-import projetEchecPong.models.Reine;
-import projetEchecPong.models.Roi;
-import projetEchecPong.models.Tour;
+import projetEchecPong.models.jeu.Echiquier;
+import projetEchecPong.models.piece.Cavalier;
+import projetEchecPong.models.piece.Fou;
+import projetEchecPong.models.piece.Piece;
+import projetEchecPong.models.piece.Pion;
+import projetEchecPong.models.piece.Reine;
+import projetEchecPong.models.piece.Roi;
+import projetEchecPong.models.piece.Tour;
+
 
 public class FormulaireConfigurationVie extends VBox{
     int nombrePiece;
@@ -36,7 +37,6 @@ public class FormulaireConfigurationVie extends VBox{
                     boolean allFiled = tousLesChampsRemplis(listeTextField);
                     if(sc != null){
                         if(allFiled){
-                            
                             Echiquier ech = new Echiquier(120.0, 120.0, 8, nombrePiece, 640.0, 640.0);
                             System.out.println("eto indray hoe: "+ech.getCentreGravite());
                             sc.setRoot(new EchiquierView(ech));
@@ -56,12 +56,12 @@ public class FormulaireConfigurationVie extends VBox{
     public void buildFormulaire(double spacing){
         
         List<Piece> pieces = new ArrayList<Piece>();
-        pieces.add(new Roi(0,1,false));
-        pieces.add(new Reine(0,2,false));
-        pieces.add(new Fou(0,3,true));
-        pieces.add(new Cavalier(0,4,true));
-        pieces.add(new Tour(0,5,true));
-        pieces.add(new Pion(0,6,true));
+        pieces.add(new Roi(0,1,1,null));
+        pieces.add(new Reine(0,2,1,null));
+        pieces.add(new Fou(0,3,2,null));
+        pieces.add(new Cavalier(0,4,2,null));
+        pieces.add(new Tour(0,5,2,null));
+        pieces.add(new Pion(0,6,8,null));
         if(nombrePiece >=2){
             int lastIndex = pieces.size() -1 ;
             int vraiNombre = modifNombrePiece(nombrePiece);
